@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="C:/Users/malusi.msomi/Documents/TestNG-attempt"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.000">
+  <properties />
+  
+  
+            <testcase name="GetGoogleUrl" time="0.000" classname="TestNG.TestNgBasics" />
+                <testcase name="GetGoogleTitle" time="0.000" classname="TestNG.TestNgBasics" />
+      
+</testsuite>

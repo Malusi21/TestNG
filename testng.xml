@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/malusi.msomi/Documents/TestNG-attempt">
+        <classes>
+            <class name="TestNG.TestNGUI">
+                <methods>
+                    <include name="Valid_Login_Test"/>
+                    <include name="Invalid_Login_Test"/>
+                </methods>
+            </class>
+            <class name="TestNG.TestNgBasics">
+                <methods>
+                    <include name="GetGoogleTitle"/>
+                    <include name="GetGoogleUrl"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="C:/Users/malusi.msomi/Documents/TestNG-attempt"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="21.676">
+  <properties />
+  
+  
+            <testcase name="Invalid_Login_Test" time="11.286" classname="TestNG.TestNGUI" />
+                <testcase name="Valid_Login_Test" time="10.390" classname="TestNG.TestNGUI" />
+      
+</testsuite>

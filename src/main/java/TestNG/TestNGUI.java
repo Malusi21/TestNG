@@ -5,7 +5,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import static org.junit.Assert.*;
@@ -24,13 +30,15 @@ public class TestNGUI {
         String username_field = "//*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"input-main\", \" \" ))]";
         String password_field = "/html/body/div[1]/section/div[2]/div/div/div[2]/div[4]/form/div[2]/input";
         String login_button = "/html/body//form/div[4]/div[2]/button[contains(.,\"Log In\")]";
-        String valid_username = "Malusi2051@gmail.com";
+        String valid_username = "";
         String invalid_username = "Malusi@test.com";
-        String valid_password = "Legend!@12";
+        String valid_password = "";
         String invalid_password = "1234";
         String Error_test = "/html/body/div[1]/section/div[2]/div/div/div[1]";
         String password_error_dialog = "//*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"login-form-error\", \" \" ))]";
         String getPassword_error_text = "Please correct the errors in red below.";
+        String test_screenshot1 = "Image1";
+        String test_screenshot2 = "Image2";
 
     }
 
@@ -57,30 +65,31 @@ public class TestNGUI {
         UserCurrentPage(url);
     }
     public void UserCurrentPage(String url){
-        if(url.equals("https://www.gumtree.co.za")){
+        if(url.equals(url)){
             System.out.println("Correct page is being presented to the user");
         } else {
             System.out.println("User is presented with another page");
         }
     }
 
-    @Test (priority = 1)
-    public void Valid_Login_Test(){
-        User_Login(var.valid_username,var.valid_password);
+    @Test
+    public void Valid_Login_Test() throws IOException {
+        User_Login(var.valid_username,var.valid_password,var.test_screenshot1);
     }
 
-    @Test (priority = 2)
-    public void Invalid_Login_Test(){
-        User_Login(var.invalid_username,var.invalid_password);
+    @Test
+    public void Invalid_Login_Test() throws IOException {
+        User_Login(var.invalid_username,var.invalid_password,var.test_screenshot2);
     }
 
-    public void User_Login(String username, String password){
+    public void User_Login(String username, String password, String imagename) throws IOException {
         click_proceed();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         enter_login_details(username,var.username_field);
         enter_login_details(password, var.password_field);
         click_login_button();
         verify_login();
+        take_screenshot(imagename);
     }
     public void verify_login(){
         try {
@@ -124,5 +133,11 @@ public class TestNGUI {
     @AfterClass
     public void quit_driver(){
         driver.quit();
+    }
+
+    public void take_screenshot(String name) throws IOException {
+        Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+
+        ImageIO.write(screenshot.getImage(), "jpg", new File("C:\\Users\\malusi.msomi\\Documents\\TestNG-attempt\\test-output\\"+name+".jpg"));
     }
 }
